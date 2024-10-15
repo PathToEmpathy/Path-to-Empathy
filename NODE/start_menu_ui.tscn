@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv84wtf18t8nc"]
+
+[ext_resource type="Script" path="res://SCRIPT/start_menu_ui.gd" id="1_e5dwr"]
+
+[node name="START_MENU_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e5dwr")
+
+[node name="BoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Host_Server_Button" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Host Server"
+
+[node name="Join_Server_Button" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Join Server"
+
+[node name="Play_Solo_Button" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Play Solo"
+
+[node name="Exit_Button" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
+[connection signal="pressed" from="BoxContainer/Host_Server_Button" to="." method="_on_host_server_button_pressed"]
+[connection signal="pressed" from="BoxContainer/Join_Server_Button" to="." method="_on_join_server_button_pressed"]
+[connection signal="pressed" from="BoxContainer/Play_Solo_Button" to="." method="_on_play_solo_button_pressed"]
+[connection signal="pressed" from="BoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]
