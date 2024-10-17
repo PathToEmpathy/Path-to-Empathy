@@ -11,7 +11,8 @@ func _on_join_server_button_pressed():
 
 
 func _on_play_solo_button_pressed():
-	print("PLACEHOLDER - START SOLO GAME")
+	get_tree().change_scene_to_file("res://Node/table_scene.tscn")
+	print("Switched to table scene")
 
 
 func _on_exit_button_pressed():

@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="path-to-empathy"
-run/main_scene="res://NODE/main.tscn"
+run/main_scene="res://Node/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-MultiplayerManager="*res://SCRIPT/multiplayer_manager.gd"
+MultiplayerManager="*res://Script/multiplayer_manager.gd"
+
+[dotnet]
+
+project/assembly_name="path-to-empathy"
