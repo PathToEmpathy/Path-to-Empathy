@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdakrh2n32lne"]
-
-[ext_resource type="Texture2D" uid="uid://oqa5wpix2sx7" path="res://icon.svg" id="1_dfveb"]
-
-[node name="TableScene" type="Node2D"]
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(589, 312)
-texture = ExtResource("1_dfveb")

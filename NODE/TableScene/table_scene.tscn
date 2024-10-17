@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdakrh2n32lne"]
+
+[ext_resource type="Script" path="res://Script/card_spawner.gd" id="1_at4dj"]
+
+[node name="TableScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CardSpawner" type="Node" parent="."]
+script = ExtResource("1_at4dj")
+
+[node name="NewCardButton" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 281.0
+offset_right = 565.0
+offset_bottom = 312.0
+text = "New Random Card"
+
+[node name="NewBlackCardButton" type="Button" parent="."]
+offset_left = 436.0
+offset_top = 247.0
+offset_right = 565.0
+offset_bottom = 278.0
+text = "New Black Card"
+
+[connection signal="pressed" from="NewCardButton" to="CardSpawner" method="_on_new_card_button_pressed"]
+[connection signal="pressed" from="NewBlackCardButton" to="CardSpawner" method="_on_new_black_card_button_pressed"]

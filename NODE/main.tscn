@@ -1,20 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8dubru3qkhvy"]
 
-[ext_resource type="PackedScene" uid="uid://dv84wtf18t8nc" path="res://Node/start_menu_ui.tscn" id="1_xla7u"]
+[ext_resource type="PackedScene" uid="uid://dcg06uhibep1" path="res://Node/StartMenuScene/start_menu_scene.tscn" id="1_3jkp7"]
 
 [node name="Main" type="Node2D"]
 
-[node name="StartMenuScene" type="Node2D" parent="."]
-
-[node name="StartMenuUI" parent="StartMenuScene" instance=ExtResource("1_xla7u")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 545.0
-offset_top = 268.0
-offset_right = 545.0
-offset_bottom = 268.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="StartMenuScene" parent="." instance=ExtResource("1_3jkp7")]

@@ -11,7 +11,7 @@ func _on_join_server_button_pressed():
 
 
 func _on_play_solo_button_pressed():
-	get_tree().change_scene_to_file("res://Node/table_scene.tscn")
+	get_tree().change_scene_to_file("res://Node/TableScene/table_scene.tscn")
 	print("Switched to table scene")
 
 
