@@ -3,6 +3,9 @@ extends Node
 const SERVER_PORT = 8080
 const SERVER_IP = "127.0.0.1"
 
+signal add_player
+signal remove_player
+
 func host_game():
 	print("Starting host!")
 	
@@ -21,7 +24,9 @@ func join_game():
 	multiplayer.multiplayer_peer = client_peer
 
 func _add_player_to_game(id: int):
+	emit_signal("add_player")
 	print("Player %s joined the game!" %id)
 
 func _del_player(id: int):
+	emit_signal("remove_player")
 	print("Player %s left the game!" %id)

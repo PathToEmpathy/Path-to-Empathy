@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8dubru3qkhvy"]
+[gd_scene load_steps=3 format=3 uid="uid://b8dubru3qkhvy"]
 
 [ext_resource type="PackedScene" uid="uid://dv84wtf18t8nc" path="res://NODE/start_menu_ui.tscn" id="1_xla7u"]
+[ext_resource type="PackedScene" uid="uid://cdheg8cfolvvf" path="res://NODE/player_list.tscn" id="2_bnwkl"]
 
 [node name="MAIN" type="Node2D"]
 
@@ -16,3 +17,9 @@ offset_right = 545.0
 offset_bottom = 268.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="player_list" parent="." instance=ExtResource("2_bnwkl")]
+offset_left = 28.0
+offset_top = 50.0
+offset_right = 28.0
+offset_bottom = 50.0
