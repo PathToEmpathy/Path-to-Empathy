@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh0bec27jggg2"]
+
+[ext_resource type="Texture2D" uid="uid://dfci41j1m5ufo" path="res://Assets/PtE_Placeholders.png" id="1_5pdi3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooie7"]
+atlas = ExtResource("1_5pdi3")
+region = Rect2(0, 0, 88, 124)
+
+[node name="CardBase" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_ooie7")

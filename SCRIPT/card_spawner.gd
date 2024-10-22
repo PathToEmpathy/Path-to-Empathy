@@ -1,31 +1,38 @@
 extends Node
 
-func new_base() -> Sprite2D:
-	var sprite: Sprite2D = Sprite2D.new()
-	sprite.texture = AtlasTexture.new()
-	sprite.texture.atlas = load("res://Assets/PtE_Placeholders.png")
-	sprite.texture_filter = 1
-	sprite.scale = Vector2(1.5,1.5)
-	return sprite
+var card_base = preload("res://Node/TableScene/card_base.tscn")
 
-func _on_new_card_button_pressed() -> void:
-	var card: Node2D = Node2D.new()
-	var sprite: Sprite2D = new_base()
+# Spanws a random blue or red card, based on a random number
+func spawn_random_card() -> void:
+	var card = card_base.instantiate()
+	var sprite = card.get_child(0)
 	
+	# Generate a random number and decide card color accordingly
 	var num: int = randi() % 100
-	if num > 20:
+	# Percentage change of the new card being red
+	var threshold: int = 20
+	
+	if num > threshold: 
 		sprite.texture.region = Rect2(0, 0, 88, 124)
 	else:
 		sprite.texture.region = Rect2(88, 0, 88, 124)
 	
-	card.add_child(sprite)
-	add_child.call_deferred(card)
+	# Add the sprite to the card node and the card node to the scene
+	get_node("/root/TableScene/PlayerHand").add_child(card)
 
-
-func _on_new_black_card_button_pressed() -> void:
-	var card: Node2D = Node2D.new()
-	var sprite: Sprite2D = new_base()
+func spawn_black_card() -> void:
+	var card = card_base.instantiate()
+	var sprite = card.get_child(0)
 	
 	sprite.texture.region = Rect2(176, 0, 88, 124)
-	card.add_child(sprite)
-	add_child.call_deferred(card)
+	get_node("/root/TableScene/PlayerHand").add_child(card)
+
+# These are signals that need to spawn a card
+func _on_new_card_button_pressed() -> void:
+	spawn_random_card()
+func _on_new_black_card_button_pressed() -> void:
+	spawn_black_card()
+func _on_player_hand_request() -> void:
+	add_child(card_base.instantiate())
+
+#TODO add abilty to spawn in either the hand or the field
