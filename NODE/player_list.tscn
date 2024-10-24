@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdheg8cfolvvf"]
+[gd_scene load_steps=3 format=3 uid="uid://cdheg8cfolvvf"]
 
 [ext_resource type="Script" path="res://SCRIPT/player_list.gd" id="1_hrjuw"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oxm7m"]
+properties/0/path = NodePath("PanelContainer/VBoxContainer/PlayerText:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="player_list" type="Control"]
 layout_mode = 3
@@ -11,10 +16,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hrjuw")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oxm7m")
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="PlayerText" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
