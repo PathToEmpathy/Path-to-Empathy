@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh0bec27jggg2"]
+[gd_scene load_steps=8 format=3 uid="uid://bh0bec27jggg2"]
 
 [ext_resource type="Texture2D" uid="uid://dfci41j1m5ufo" path="res://Assets/PtE_Placeholders.png" id="1_5pdi3"]
+[ext_resource type="Script" path="res://Script/state_machine.gd" id="2_o7k2q"]
+[ext_resource type="Script" path="res://Script/States/InHand.gd" id="3_rxm5q"]
+[ext_resource type="Script" path="res://Script/on_table.gd" id="4_ka7qn"]
+[ext_resource type="PackedScene" uid="uid://jt0fh5ge8k3a" path="res://Node/TableScene/card_area.tscn" id="5_x0yly"]
+[ext_resource type="PackedScene" uid="uid://bs44egchafdbd" path="res://Node/TableScene/buttons_sprite.tscn" id="6_vc7bp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ooie7"]
 atlas = ExtResource("1_5pdi3")
@@ -9,6 +14,29 @@ region = Rect2(0, 0, 88, 124)
 [node name="CardBase" type="Node2D"]
 scale = Vector2(1.5, 1.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CardSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = SubResource("AtlasTexture_ooie7")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_o7k2q")
+
+[node name="InHand" type="Node" parent="StateMachine" node_paths=PackedStringArray("card", "buttons", "cardArea")]
+script = ExtResource("3_rxm5q")
+card = NodePath("../..")
+buttons = NodePath("../../Buttons Sprite")
+cardArea = NodePath("../../CardArea")
+
+[node name="OnTable" type="Node" parent="StateMachine"]
+script = ExtResource("4_ka7qn")
+
+[node name="CardArea" parent="." instance=ExtResource("5_x0yly")]
+visible = false
+
+[node name="Buttons Sprite" parent="." instance=ExtResource("6_vc7bp")]
+
+[connection signal="on_click" from="CardArea" to="StateMachine/InHand" method="_on_card_area_on_click"]
+[connection signal="on_click" from="Buttons Sprite/ConfirmArea" to="StateMachine/InHand" method="_on_confirm_area_on_click"]
+[connection signal="on_click" from="Buttons Sprite/CancelArea" to="StateMachine/InHand" method="_on_cancel_area_on_click"]
+
+[editable path="Buttons Sprite"]

@@ -7,25 +7,20 @@ func spawn_random_card() -> void:
 	var card = card_base.instantiate()
 	var sprite = card.get_child(0)
 	
-	# Generate a random number and decide card color accordingly
-	var num: int = randi() % 100
 	# Percentage change of the new card being red
 	var threshold: int = 20
+	var num: int = randi() % 100
 	
 	if num > threshold: 
 		sprite.texture.region = Rect2(0, 0, 88, 124)
 	else:
 		sprite.texture.region = Rect2(88, 0, 88, 124)
-	
-	# Add the sprite to the card node and the card node to the scene
-	get_node("/root/TableScene/PlayerHand").add_child(card)
 
 func spawn_black_card() -> void:
 	var card = card_base.instantiate()
 	var sprite = card.get_child(0)
 	
 	sprite.texture.region = Rect2(176, 0, 88, 124)
-	get_node("/root/TableScene/PlayerHand").add_child(card)
 
 # These are signals that need to spawn a card
 func _on_new_card_button_pressed() -> void:

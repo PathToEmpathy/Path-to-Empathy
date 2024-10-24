@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs44egchafdbd"]
+
+[ext_resource type="Texture2D" uid="uid://bpp38jseg1nrv" path="res://Assets/buttons.png" id="1_5jle5"]
+[ext_resource type="Script" path="res://Script/area_2d.gd" id="2_1m33c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phoxm"]
+size = Vector2(40, 32)
+
+[node name="Buttons Sprite" type="Sprite2D"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -78.6667)
+texture = ExtResource("1_5jle5")
+
+[node name="ConfirmArea" type="Area2D" parent="."]
+script = ExtResource("2_1m33c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConfirmArea"]
+position = Vector2(-24, 1.52588e-05)
+shape = SubResource("RectangleShape2D_phoxm")
+
+[node name="CancelArea" type="Area2D" parent="."]
+script = ExtResource("2_1m33c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CancelArea"]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_phoxm")

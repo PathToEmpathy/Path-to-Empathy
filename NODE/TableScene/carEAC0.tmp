@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh0bec27jggg2"]
+
+[ext_resource type="Texture2D" uid="uid://dfci41j1m5ufo" path="res://Assets/PtE_Placeholders.png" id="1_5pdi3"]
+[ext_resource type="Script" path="res://Script/state_machine.gd" id="2_o7k2q"]
+[ext_resource type="Script" path="res://Script/States/InHand.gd" id="3_rxm5q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooie7"]
+atlas = ExtResource("1_5pdi3")
+region = Rect2(0, 0, 88, 124)
+
+[node name="CardBase" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_ooie7")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_o7k2q")
+
+[node name="InHand" type="Node" parent="StateMachine"]
+script = ExtResource("3_rxm5q")

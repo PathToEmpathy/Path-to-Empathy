@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bh0bec27jggg2"]
+
+[ext_resource type="Texture2D" uid="uid://dfci41j1m5ufo" path="res://Assets/PtE_Placeholders.png" id="1_5pdi3"]
+[ext_resource type="Script" path="res://Script/state_machine.gd" id="2_o7k2q"]
+[ext_resource type="Script" path="res://Script/States/InHand.gd" id="3_rxm5q"]
+[ext_resource type="Script" path="res://Script/area_2d.gd" id="4_6jmfc"]
+[ext_resource type="Script" path="res://Node/TableScene/on_table.gd" id="4_ka7qn"]
+[ext_resource type="Texture2D" uid="uid://bpp38jseg1nrv" path="res://Assets/buttons.png" id="5_frk13"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooie7"]
+atlas = ExtResource("1_5pdi3")
+region = Rect2(0, 0, 88, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8paj"]
+size = Vector2(88, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phoxm"]
+size = Vector2(40, 32)
+
+[node name="CardBase" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="CardSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_ooie7")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_o7k2q")
+
+[node name="InHand" type="Node" parent="StateMachine" node_paths=PackedStringArray("card", "buttons")]
+script = ExtResource("3_rxm5q")
+card = NodePath("../..")
+buttons = NodePath("Buttons Sprite")
+
+[node name="CardArea" type="Area2D" parent="StateMachine/InHand"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_6jmfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/InHand/CardArea"]
+shape = SubResource("RectangleShape2D_y8paj")
+
+[node name="Buttons Sprite" type="Sprite2D" parent="StateMachine/InHand"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -118)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_frk13")
+
+[node name="ConfirmArea" type="Area2D" parent="StateMachine/InHand/Buttons Sprite"]
+script = ExtResource("4_6jmfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/InHand/Buttons Sprite/ConfirmArea"]
+position = Vector2(-24, 1.52588e-05)
+shape = SubResource("RectangleShape2D_phoxm")
+
+[node name="CancelArea" type="Area2D" parent="StateMachine/InHand/Buttons Sprite"]
+script = ExtResource("4_6jmfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/InHand/Buttons Sprite/CancelArea"]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_phoxm")
+
+[node name="OnTable" type="Node" parent="StateMachine"]
+script = ExtResource("4_ka7qn")
+
+[connection signal="on_click" from="StateMachine/InHand/CardArea" to="StateMachine/InHand" method="_on_area_2d_on_click"]
+[connection signal="on_click" from="StateMachine/InHand/Buttons Sprite/ConfirmArea" to="StateMachine/InHand" method="_on_confirm_area_on_click"]
+[connection signal="on_click" from="StateMachine/InHand/Buttons Sprite/CancelArea" to="StateMachine/InHand" method="_on_cancel_area_on_click"]
