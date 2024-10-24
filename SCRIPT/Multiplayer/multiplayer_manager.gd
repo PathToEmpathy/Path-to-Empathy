@@ -44,5 +44,5 @@ func _add_player_to_game(id: int):
 	emit_signal("add_player", ("Player %s" %id))
 
 func _del_player(id: int):
-	#emit_signal("remove_player", ("Player %s" %id))
+	emit_signal("remove_player", ("Player %s" %id))
 	print("Player %s left the game!" %id)

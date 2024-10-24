@@ -12,8 +12,8 @@ func _ready() -> void:
 func add_player_to_list(playername: String):
 	playertext.text += playername + "\n"
 
-func remove_player_to_list():
-	print("Removing Player to List!")
+func remove_player_to_list(playername: String):
+	print("Removing " + playername + " from List!")
 
 func refresh_list(players : Array):
 	for p in players:
